@@ -34,16 +34,26 @@ function walkDog() {
 
 function cleanKitchen() {
   return new Promise((resolve, reject) => {
+    const cleanedKitchen = true;
     setTimeout(() => {
-      resolve("You cleaned kitchen");
+      if (cleanedKitchen) {
+        resolve("You cleaned kitchen");
+      } else {
+        reject("You didn't clean the kitchen");
+      }
     }, 2500);
   });
 }
 
 function takeTrash() {
   return new Promise((resolve, reject) => {
+    trashEmpty = false;
     setTimeout(() => {
-      resolve("You took all the trash");
+      if (trashEmpty) {
+        resolve("You took all the trash");
+      } else {
+        reject("You didn't take the trash");
+      }
     }, 800);
   });
 }
@@ -68,4 +78,7 @@ walkDog()
       console.log(value);
       console.log("You finished all the chores");
     });
+  })
+  .catch((error) => {
+    console.error(error);
   });

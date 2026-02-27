@@ -58,14 +58,6 @@ function takeTrash() {
   });
 }
 
-// walkDog(() => {
-//   cleanKitchen(() => {
-//     takeTrash(() => {
-//       console.log("You finished all the chores");
-//     });
-//   });
-// });
-
 // Method chaining
 walkDog()
   .then((value) => {

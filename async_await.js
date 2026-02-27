@@ -77,4 +77,11 @@ async function doChores() {
   }
 }
 
-doChores();
+// doChores();
+
+const a = 1000;
+const b = 10 * 100;
+const c = int("1000");
+const d = 500 + 500;
+
+console.log(a == b, a == c, a == d);

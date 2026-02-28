@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+}
+#btn {
+  background-color: bisque;
+  font-size: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 250px;
+  position: relative;
+}

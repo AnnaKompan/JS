@@ -3,6 +3,8 @@
  *
  * async - makes function return a promise
  * await - makes function wait for a promise
+ *
+ * try/catch is used in async/await to handle errors
  */
 
 function walkDog() {

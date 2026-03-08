@@ -53,10 +53,10 @@
 - `git add .` - додаєм змінені файли stanged
 - `git commit -m "bla bla"` - комітимо зміни
 - `git push` - додаємо змінені зміни на репо
-- `git pull` or `git fetch` + `git pull` - завантажити останній код з репо
+- `git pull`/`git pull origin branch_name` or `git fetch` + `git pull` - завантажити останній код з репо
 - `git branch br` - створити гілку
 - `git checkout br` - змінити гілку
 - `git checkout -b` - змінити і створити гілку
-- `git merge` - замьорджити зміни в основну гілку
+- `git merge` or `git rebase main_branch_name` - замьорджити зміни в основну гілку
 - `git log` - показати історію комітів
 - `git stash` - тимчасово зберегти зміни (корисно коли перемикаємось між гілками)

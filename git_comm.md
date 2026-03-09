@@ -60,3 +60,6 @@
 - `git merge` or `git rebase main_branch_name` - замьорджити зміни в основну гілку
 - `git log` - показати історію комітів
 - `git stash` - тимчасово зберегти зміни (корисно коли перемикаємось між гілками)
+- `git branch -M main` - rename branch
+- `git remote add origin https://....git`
+- `git push -u origin main` -set upstream

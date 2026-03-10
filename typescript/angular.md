@@ -212,3 +212,102 @@ export class Test {
 <p>{{messageFromChild}}</p>
 <app-test [childMessage]="messageFromParent" (messageFromChild)="getMessageFromChild($event)"></app-test>
 ```
+
+# Директива @Directive
+
+— дає можливість маніпулювати елементами DOM (структурою документа) або поведінкою елементів на сторінці.
+
+### Типи директив:
+
+**структурні** та **атрибутивні**
+
+1. **структурні** змінюють DOM
+
+   `*ngIf, *ngFor, *ngSwitch` now `@if @for @switch`
+
+2. **атрибутивні** додають або змінюють поведінку або вигляд HTML-елементів - **NgStyle** та **NgClass**
+
+   `<p [ngStyle]="{color: 'red'}">ngStyle used</p>`
+
+   `<p [ngClass]="{'active': isActive, 'disabled': isDisabled}"> ngClass used</p>`
+
+### @for
+
+```
+    <!-- OLD FOR -->
+<ul>
+    <li *ngFor="let user of users; index as i">{{i+1}}: {{user}}</li>
+</ul>
+```
+
+```
+    <!-- NEW FOR -->
+<ul>
+    @for (user of users; track user; let idx = $index, e=$even, total=$count){
+    <li>User: #{{idx+1}}:{{user}}</li>
+    <p>Total Users: {{total}}</p>
+    }@empty{
+    <li>There are no users!</li>
+    }
+</ul>
+```
+
+**контекстні змінні**:
+
+1. **$count** — вказує загальну кількість елементів у колекції;
+2. **$index** — індекс поточного елемента в циклі;
+3. **$first** — логічна змінна, що вказує, чи є поточний елемент першим у циклі;
+4. **$last** — логічна змінна, що вказує, чи є поточний елемент останнім у циклі;
+5. **$even** — істина, коли індекс поточного елемента парний;
+6. **$odd** — істина, коли індекс поточного елемента непарний.
+
+### @switch
+
+```
+<!-- OLD SWITCH -->
+<div [ngSwitch]="appState">
+    <p *ngSwitchCase="'active'"> APP is active</p>
+    <p *ngSwitchCase="'paused'"> APP is paused</p>
+    <p *ngSwitchCase="'stopped'"> APP is stopped</p>
+    <p *ngSwitchDefault="">APP State is unknown</p>
+</div>
+```
+
+```
+<!-- NEW SWITCH -->
+@switch(appState){
+@case('active'){
+<p>APP is active</p>
+}
+@case('paused'){
+<p>APP is paused</p>
+}
+@case('stopped'){
+<p>APP is stopped</p>
+}
+@default{
+<p>APP State is unknown</p>
+}
+}
+```
+
+### @if
+
+```
+<!-- OLD IF-->
+<p *ngIf="isClickedState ; else notClickedState"> Button was clicked! </p>
+<ng-template #notClickedState>
+    <p>Buton wasn't clicked!</p>
+</ng-template>
+<button (click)="toggleState()"> Toggle State </button>
+```
+
+```
+<!-- NEW IF -->
+@if (isClickedState){
+<p>Button was clicked!</p>
+}@else {
+<p>Buton wasn't clicked!</p>
+}
+<button (click)="toggleState()">Toggle State</button>
+```

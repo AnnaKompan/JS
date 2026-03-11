@@ -311,3 +311,63 @@ export class Test {
 }
 <button (click)="toggleState()">Toggle State</button>
 ```
+
+# Пайпи
+
+це спеціальні класи, які використовуються для трансформації, форматування даних у шаблонах.
+
+### Вбудовані пайпи:
+
+1. **DatePipe** — використовується для форматування дати та часу (shortDate, longDate, fullTime..)
+
+`    <p>{{today | date: 'shortDate' }}</p>`
+
+2. **UpperCasePipe** та **LowerCasePipe**
+
+`    <p>{{"HELLO WORLD" | lowercase}}</p>`
+
+3. **CurrencyPipe** — перетворення числа у формат валюти.
+
+`    <p>{{1500.5 | currency}}</p>`
+
+4. **DecimalPipe** — для форматування чисел, кількість цифр до та після коми.
+
+`    <p>{{1.23455322 | number}}</p>`
+
+5. **PercentPipe** — перетворює число у відсоткове значення + %.
+
+`   <p>{{0.5| percent}}</p>`
+
+6. **JsonPipe** — виводить об'єкт у форматі JSON. Корисний для дебагінгу.
+
+`    <p>{{ { name: 'John', age: 23} | json }}</p>`
+
+7. **AsyncPipe** — автоматично підписується на Observable або Promise та повертає останнє значення, яке воно видало.
+
+**_date і currency, можуть використовуватись для локалізації застосунків_**
+
+### Типи пайпів
+
+чисті (**pure**) -тоді, коли Angular виявляє зміну, якщо без змін то юзаєм кеш
+
+нечисті (**impure**) -при кожній зміні вхідних даних або при кожному циклі перевірки змін
+
+### Кастомні пайпи
+
+`ng g p blabla`
+
+```
+<!-- truncate-pipe.ts -->
+@Pipe({
+  name: 'truncate',
+})
+export class TruncatePipe implements PipeTransform {
+  transform(value: string, limit: number): string {
+    return value.length > limit ? value.substring(0, limit) + '...' : value;
+  }
+}
+```
+
+<!-- test.html -->
+
+`<p>{{longText | truncate: 18}}</p>`

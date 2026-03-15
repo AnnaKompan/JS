@@ -434,3 +434,154 @@ bootstrapApplication(AppComponent, {
 - провайдер залежностей.
 
 \***\*Depency Injection - ключовий механізм для зменшення залежностей та зв'язку між різними частинами застосунку, що полегшує його тестування та підтримку (DI компоненти та сервіси замість того, щоб створювати залежності самостійно, отримують їх від Angular)\*\***
+
+# Форми
+
+основний інструмент для збору даних від користувачів
+
+### 1. шаблонні (template-driven)
+
+- прості у використанні та ідеально підходять для простих та помірно складних форм
+- Центральним елементом є директива ngModel, яка дозволяє реалізувати двостороннє зв'язування між елементами форми в HTML і моделями даних у компонентах TypeScript
+- Валідація у шаблонних формах також визначається на рівні шаблону, без додавання в TS
+
+### 2. реактивні (reactive)
+
+- надають більш гнучкі та масштабовані можливості, для складних сценаріїв з високим рівнем кастомізації
+- використання класів FormGroup і FormControl, що дає повний контроль над поведінкою форми
+- забезпечують динамічніше управління станом форми, включно з асинхронною валідацією
+
+## Використання реактивних форм
+
+1. Імпорт **ReactiveFormsModule** з пакета @angular/forms
+   ```
+   import {
+   AbstractControl,
+   FormsModule,
+   ReactiveFormsModule,
+   Validators,
+   ValidationErrors,
+   FormGroup,
+   FormControl,
+   } from '@angular/forms';
+   ```
+2. вказати **ReactiveFormsModule** у полі **imports** вашого компонента. Це дозволить використовувати реактивні форми у компоненті.
+
+```
+@Component({
+  selector: 'app-test',
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  ...
+})
+```
+
+3. Для роботи з реактивною формою Створіть екземпляр **FormControl** із початковим значенням (щоб керувати станом введення форми, слухати зміни та валідувати дані.)
+
+```
+export class Test{
+  name = new FormControl('');
+  <!-- OR formGroup(fixed size) OR formArray(dynamic size)-->
+  complexForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    ...
+  })
+}
+```
+
+4. Після створення контролу в класі компонента, асоціюйте його з елементом форми у шаблоні
+
+```
+  <label for="name">Name</label>
+  <input id="name" type="test" [formControl]="name">
+<!-- OR FOR formGroup -->
+  <label for="email">Email: </label>
+  <input type="email" formControlName="email" />
+  <div *ngIf="email?.invalid && email?.touched" class="error">This value is invalid</div>
+```
+
+\***\*Метод setValue() використовується для оновлення значення поля форми, patchValue() — оновлює лише ті властивості, які визначені в об'єкті та змінилися в моделі форм\*\***
+
+```
+<!-- ts file in class method -->
+updateName(){
+  this.name.setValue('Nancy')
+}
+<!-- html file -->
+<button type="button" (click)="updateName()">Update Name</button>
+```
+
+5. Щоб обробити дані форми, додайте до форми подію **ngSubmit**, яка буде активована при її відправленні
+
+```
+<form [formGroup]="complexForm" (ngSubmit)="onSubmit()">
+        <label for="name">Name: </label>
+
+    <!-- і в консолі відображаєм (функція в екземплярі класу в методах в ts директиві)-->
+
+onSubmit() {
+  console.log('Form value: ', this.complexForm.value);
+  console.log('Form status - is valid: ', this.complexForm.valid);
+  console.log('Form controls: ', this.complexForm.controls);
+}
+```
+
+6. Валідація форм. Створення власних валідаторів
+
+- import {Validators} from ...forms
+- додати Validators.required як другий параметр до масиву при створенні елемента управління
+
+```
+complexForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    ...
+})
+```
+
+Два типи:
+
+- **Синхронні**(негайно повертають набір помилок валідації або **null**, коли додали другим аргументом при створенні контроль форми)
+- **Асинхронні** (приймають екземпляр контролу і повертають Promise або Observable, коли додали третім аргументом при створенні контроль форми) \***\*Angular запускає асинхронні валідатори лише після успішного завершення всіх синхронних валідаторів\*\***
+
+**Кастомний Валідатор**
+
+```
+export class Test {
+// кастомний валідатор віку
+    ageValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    const isValidAge = value >= 18 && value <= 120;
+    return isValidAge ? null : { ageInvalid: 'Age must be between 18 and 120' };
+    }
+<!-- і додам в контроль групу як this.blalba -->
+    age: new FormControl('', [Validators.required, this.ageValidator]),
+```
+
+## Використання template-driven форм
+
+1. Імпортувати **FormsModule** до компонента при standalone-підході.
+
+```
+export class UserRegist {
+   user = {
+   name: '',
+   email: ''
+   };
+
+   onSubmit(){
+   console.log(this.user)
+   }
+   }
+```
+
+2. Використати директиву **NgModel**, щоб прив'язати поля форми до моделі. (Додайте **[(ngModel)]** до кожного поля введення у формі, щоб двосторонньо прив'язати)
+
+```
+<form #userForm="ngForm" (ngSubmit)="onSubmit()">
+  <div>
+      <label for="name">Name: </label>
+      <input type="text" id='name' [(ngModel)='user.name' name='name' required] />
+      <!-- touched when input empty and user didn't enter anyt' -->
+      <div *ngIf="name?.invalid && name?.touched" class="error">This value is invalid</div>
+  </div>
+```

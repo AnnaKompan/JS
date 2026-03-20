@@ -711,3 +711,74 @@ const routes: Routes = [
 2. **CanLoad** — перевіряє, чи може користувач ліниво завантажити модуль.
 
 3. **CanActivateChild** — визначає, чи може користувач активувати дочірні маршрути маршруту.
+
+## Standalone routes + Lazy Loading
+
+1. Оголосіть масив роутів, де кожен елемент масиву описує шлях і компонент в **app.routes.ts** in root dir.
+
+Routes
+
+```
+export const routes: Routes = [
+  { path: 'angular', component: Angular },
+];
+```
+
+Routes with Lazy Loading
+
+```
+export const routes: Routes = [
+  {
+    path: 'angular',
+    loadComponent: () =>
+      import('./angular/angular.component')
+        .then(m => m.Angular)
+  },
+];
+```
+
+2. router setup в **app.config.ts** має бути, щоб підключити router в standalone:
+
+```
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [provideBrowserGlobalErrorListeners(), provideRouter(routes)],
+};
+```
+
+3. Add to **app.ts** imports of **RouterOutlet**(навігація) and **RouterLink**(місце де рендериться сторінка=>router-outlet)
+
+```
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    // RouterLinkActive,
+    CommonModule,
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatListModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatGridListModule,
+    MatCardModule,
+    MatTabsModule,
+    MatTableModule,
+  ],
+  templateUrl: './app.html',
+  styleUrl: './app.scss',
+})
+```
+
+4. В app.html додати `<router-outlet></router-outlet>` де рендериться сторінка
+
+---
+
+**component = одразу грузиться**
+
+**loadComponent = lazy loading**

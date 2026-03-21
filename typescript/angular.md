@@ -782,3 +782,104 @@ export const appConfig: ApplicationConfig = {
 **component = одразу грузиться**
 
 **loadComponent = lazy loading**
+
+# Change Detection - цикл виявлення змін （Zone.js）
+
+механізм для виявлення змін у даних компонентів
+
+- кліки миші
+- введення тексту у форми
+- перемикання вкладок
+- завершення асинхронних HTTP-запитів
+
+Коли подія виявлена, Angular використовує цю інформацію для ініціації **перевірки змін** （алгоритм **«dirty checking»** - порівнює поточні значення даних з попередніми）
+
+Angular використовує бібліотеку Zone.js для визначення початку та завершення асинхронних операцій.
+
+## Zone.js
+
+бібліотека для JavaScript, яка дозволяє перехоплювати асинхронні операції та керувати ними.
+
+- відстежує початок і кінець асинхронних операцій
+- може перехоплювати різні асинхронні події, включаючи кліки мишею, таймери, проміси, асинхронні запити
+- Коли асинхронна подія завершується, Zone.js повідомляє Angular, що потрібно **перевірити наявність змін** та **оновити інтерфейс**.
+
+## Change Detection стратегії
+
+підходи до управління тим, як і коли фреймворк ідентифікує та обробляє зміни у даних і станах компонентів
+
+- Default `ChangeDetectionStrategy.Default` (при створенні компоненту, Angular автоматично застосовує Default, що відстежує будь-які можливі зміни в компонентах і повторно рендерить усі компоненти, навіть якщо зміни відбулись тільки в одному маленькому елементі застосунку)
+- OnPush `ChangeDetectionStrategy.OnPush` (вказати в метаданих компонента щоб юзати!!! ) активізується тоді, коли змінюються вхідні дані компонента (шляхом зміни зв’язаних даних властивостей **@Input**) або коли перевірка змін викликається вручну (`detectChanges` або `markForCheck` у сервісі `ChangeDetectorRef`).
+
+-> _markForCheck():_ не ініціює виявлення змін негайно, але гарантує, що компонент буде перевірено під час наступного запуску циклу виявлення змін.
+
+```
+import { Component, ChangeDetectorRef } from '@angular/core';
+
+@Component({
+  selector: 'app-my-component,
+  template: `
+    <p>Data Status: {{ dataStatus }}</p>
+  `,
+})
+export class DataDisplayComponent {
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    // позначаєм компонент для перевірки
+    updateState(private cdr: ChangeDetectorRef){}
+    updateState(){
+      this.crd.markForCheck();
+    }
+  }
+}
+```
+
+-> _detectChanges():_ негайно запускає виявлення змін для компонента і всіх його піделементів незалежно від того, чи використовується стратегія _OnPush_, чи ні.
+
+```
+import { Component, ChangeDetectorRef } from '@angular/core';
+
+@Component({
+  selector: 'app-my-component,
+  template: `
+    <p>Data Status: {{ dataStatus }}</p>
+  `,
+})
+export class DataDisplayComponent {
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    // позначаєм компонент для перевірки
+    updateState(private cdr: ChangeDetectorRef){}
+    updateState(){
+      this.crd.detectChanges();
+    }
+  }
+}
+```
+
+## NgZone
+
+керує механізмом виявлення змін в Angular при кожній події користувача(синхронизація змін)
+Часті події, такі як **mouseUp()** або **mouseDown()** можуть ініціювати занадто багато циклів виявлення змін, що може знизити продуктивність, тому поза NgZone зменшує кількість непотрібних перевірок (**runOutsideAngular**), для повернення до NgZone **ngZone.run()**.
+
+```
+import { Component, NgZone } from '@angular/core';
+
+@Component({
+  selector: 'app-my-component,
+  template: `
+    <p>Data Status: {{ dataStatus }}</p>
+  `,
+})
+export class DataDisplayComponent {
+  constructor(private ngZone: NgZone) {}
+
+  ngOnInit() {
+
+      this.ngZone.runOutsideAngular(()=>{
+        // код що буде раниться поза зоною
+  })
+}
+```

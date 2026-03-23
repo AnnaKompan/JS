@@ -882,4 +882,59 @@ export class DataDisplayComponent {
         // код що буде раниться поза зоною
   })
 }
+}
 ```
+
+# Ліниве завантаження шаблонів @defer
+
+ліниве завантаження (lazy loading) вмісту на основі конкретних умов або подій
+
+- Підтримка тригерів для активації завантаження;
+- Передзавантаження (prefetching);
+- Управління станами завантаження, помилок і плейсхолдерів через підблоки;
+- Створення власних умов за допомогою **when**/ **on** та **prefetch when**.
+  - **on idle** — коли браузер переходить в неактивний стан.
+  - **on viewport** — коли вказаний контент потрапляє у видиму область.
+  - **on interaction** — коли користувач взаємодіє з елементом через події **click** або **keydown**.
+  - **on hover** — коли миша наведена на елемент.
+  - **on immediate** — одразу після завершення рендерингу клієнтом.
+  - **on timer** — після вказаного інтервалу часу.
+- **prefetch when** та **prefetch on** - попереднє завантаження ресурсів до того, як користувач побачить або почне взаємодіяти з блоком defer
+
+```
+@defer(on hover(hoverArea)){
+<app-test></app-test>
+}@placeholder{
+<div>Loading component...</div>
+}@loading{
+<div>Loading...</div>
+}@error {
+<p>Failed to load!</p>
+}
+```
+
+**_Router lazy loading працює на рівні руту (loadChildren, loadComponent) а @defer — це lazy loading ВСЕРЕДИНІ компонента_**
+
+## Angular Signals
+
+обгортка навколо значення, Angular сам відслідковує, коли воно змінюється
+і оновлює UI автоматично, дуже точно оновлюває DOM, лише змінені елементи.
+
+- Змінювані сигнали (WritableSignal) через .set() або update()
+- Для читання
+
+1. signal() - зберігає стан
+2. computed() - обчислює
+3. effect() - реагує на зміну сигналу
+
+```
+count = signal(2);
+
+double = computed(() => count() * 2);
+
+effect(() => {
+  console.log(double());
+});
+```
+
+**_EFFECT для поширення змін стану може призвести до помилок ExpressionChangedAfterItHasBeenChecked_**

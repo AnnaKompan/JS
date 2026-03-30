@@ -9,6 +9,3 @@ form.addEventListener("submit", function (e) {
   console.log(email, password);
   message.textContent = `Email: ${email}, Password: ${password}`;
 });
-
-// next: password validation, center element within div
-// JS filter numbers, map find remove duplicates(Set()) reverse string

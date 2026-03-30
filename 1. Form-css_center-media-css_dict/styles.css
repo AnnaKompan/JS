@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#loginForm {
+  max-width: 400px;
+  /* центруєм форму горизонтально і відступ зверху */
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #ece2e2;
+}
+
+#loginForm label {
+  /* лейбл займає повну ширину щоб інпут був під ним */
+  display: block;
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+#loginForm input {
+  /* інпут займає всю ширину контейнера */
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#loginForm button {
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  padding: 8px 10px;
+  cursor: pointer;
+  background-color: #a5a3a3;
+  color: #fff;
+  font-weight: 600;
+}
+#loginForm button:hover {
+  background-color: #8fa895;
+  transition: background-color 0.2s ease;
+}
+#loginForm button:disabled {
+  background-color: #b77471;
+  cursor: not-allowed;
+}
+
+#message {
+  text-align: center;
+  margin-top: 15px;
+}

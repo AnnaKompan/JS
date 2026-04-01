@@ -1,14 +1,22 @@
 body {
+  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
+ul,
+ol {
+  list-style: none;
+}
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 #loginForm {
-  max-width: 400px;
-  /* центруєм форму горизонтально і відступ зверху */
-  margin: 50px auto;
+  width: 400px;
   padding: 20px;
   border: 1px solid #ccc;
-  background-color: #ece2e2;
 }
 
 #loginForm label {

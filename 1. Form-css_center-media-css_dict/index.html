@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <form id="loginForm">
+    <!-- <form id="loginForm">
         <label>
             Email:
             <input type="email" name="email" required>
@@ -23,7 +23,21 @@
         </label>
         <button type="submit">Login</button>
         <div id="message"></div>
-    </form>
+    </form> -->
+    <div class="container">
+        <form id="loginForm">
+            <label>
+                Email:
+                <input type="email" required placeholder="Type your email..." autofocus></label>
+            <label>
+                Phone:
+                <input type="phone" required placeholder="Enter your phone..." autofocus></label>
+            <label>
+                Password:
+                <input type="password" required minlength="6" placeholder="Type your password..." autofocus></label>
+            <button type="submit">Login</button>
+        </form>
+    </div>
     <script src="./script.js"></script>
 </body>
 

@@ -28,13 +28,15 @@
         <form id="loginForm">
             <label>
                 Email:
-                <input type="email" required placeholder="Type your email..." autofocus></label>
+                <input name="email" type="email" required placeholder="Type your email..." autofocus></label>
             <label>
                 Phone:
-                <input type="phone" required placeholder="Enter your phone..." autofocus></label>
+                <input name="phone" type="tel" required placeholder="Enter your phone..." autofocus
+                    maxlength="15"></label>
             <label>
                 Password:
-                <input type="password" required minlength="6" placeholder="Type your password..." autofocus></label>
+                <input name="password" type="password" required minlength="6" placeholder="Type your password..."
+                    autofocus></label>
             <button type="submit">Login</button>
         </form>
     </div>

@@ -6,6 +6,9 @@ ul,
 ol {
   list-style: none;
 }
+:root {
+  --background-color: #a5a3a3;
+}
 
 .container {
   display: flex;
@@ -14,9 +17,21 @@ ol {
   height: 100vh;
 }
 #loginForm {
-  width: 400px;
+  width: 300px;
   padding: 20px;
   border: 1px solid #ccc;
+}
+@media screen and (min-width: 768px) {
+  #loginForm {
+    width: 400px;
+    border: 2px solid #ca84c5;
+  }
+}
+@media screen and (min-width: 1024px) {
+  #loginForm {
+    width: 600px;
+    border: 3px solid #c154b9;
+  }
 }
 
 #loginForm label {
@@ -43,12 +58,12 @@ ol {
   width: 100%;
   padding: 8px 10px;
   cursor: pointer;
-  background-color: #a5a3a3;
+  background-color: var(--background-color);
   color: #fff;
   font-weight: 600;
 }
 #loginForm button:hover {
-  background-color: #8fa895;
+  background-color: var(--background-color);
   transition: background-color 0.2s ease;
 }
 #loginForm button:disabled {
@@ -59,4 +74,9 @@ ol {
 #message {
   text-align: center;
   margin-top: 15px;
+}
+
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 1024px) {
 }

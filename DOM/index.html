@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM test</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="header">Test</h1>
+        <ul class="lang-list">
+            <li class="list-item">Selected option txt: <span class="lang-list-text"></span></li>
+            <li class="list-item">Selected option val: <span class="lang-list-value"></span> </li>
+        </ul>
+        <select class="lang-select">
+            <option value="java-script">JS</option>
+            <option value="c-sharp">C#</option>
+            <option value="python">Python</option>
+            <option value="java">Java</option>
+        </select>
+        <button type="button" class="btn">Click me!</button>
+        <form class="form">
+            <label for="email">Email:
+                <input name="email" type="email" autofocus required class="form-input">
+            </label>
+        </form>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>

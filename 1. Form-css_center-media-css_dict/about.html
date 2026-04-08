@@ -13,7 +13,7 @@
 
 <body>
     <header>
-        <nav class="nav" area-label="Main navigation">
+        <nav class="nav">
             <ul class="nav-list">
                 <li class="nav-list-item"><a href="./index.html">Home</a></li>
                 <li class="nav-list-item"><a href="./about.html">About</a></li>
@@ -22,21 +22,20 @@
             </ul>
         </nav>
     </header>
-    <div class="container">
-        <form id="loginForm">
-            <label for="email">
-                Email:
-                <input id="email" name="email" type="email" required placeholder="Type your email..." autofocus></label>
-            <label for="phone">
-                Phone:
-                <input id="phone" name="phone" type="tel" required placeholder="Enter your phone..."
-                    maxlength="15"></label>
-            <label for="password">
-                Password:
-                <input id="password" name="password" type="password" required minlength="6"
-                    placeholder="Type your password..."></label>
-            <button type="submit">Login</button>
-        </form>
+    <div class="about-container">
+        <h1>About Us</h1>
+        <p>Welcome to our about page!</p>
+        <button id="modal-popup">Open Modal</button>
+        <div class="backdrop is-hidden">
+            <div class="modal">
+                <button id="close-btn">&times;</button>
+                <h2>Modal Title</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem architecto facilis nulla debitis, sed
+                    ratione deleniti reiciendis itaque est ex placeat! Dolore assumenda repudiandae deleniti molestias
+                    unde,
+                    velit saepe minus!</p>
+            </div>
+        </div>
     </div>
     <footer>
         <p>&copy; 2024 My Website. All rights reserved.</p>

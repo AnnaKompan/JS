@@ -4,11 +4,12 @@ const scrollOutput = document.querySelector(".scroll-output");
 
 colorPalette.addEventListener("click", selectColor);
 
-function selectColor(event) {
-  if (event.target.nodeName !== "BUTTON") {
+function selectColor(e) {
+  // BUTTON бо назви тегів у верхньому регістрі
+  if (e.target.nodeName !== "BUTTON") {
     return;
   }
-  const selectedColor = event.target.dataset.color;
+  selectedColor = e.target.dataset.color;
   output.textContent = `Selected Color: ${selectedColor}`;
   output.style.color = selectedColor;
 }
@@ -20,6 +21,7 @@ function createPaletteItems() {
     const color = getRandomHexColor();
     const item = document.createElement("button");
     item.type = "button";
+    // dataset - дає доступ до атрибутів data-*
     item.dataset.color = color;
     item.style.backgroundColor = color;
     item.classList.add("item");

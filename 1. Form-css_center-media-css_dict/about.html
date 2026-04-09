@@ -13,34 +13,42 @@
 
 <body>
     <header>
-        <nav class="nav">
-            <ul class="nav-list">
-                <li class="nav-list-item"><a href="./index.html">Home</a></li>
-                <li class="nav-list-item"><a href="./about.html">About</a></li>
-                <li class="nav-list-item"><a href="./services.html">Services</a></li>
-                <li class="nav-list-item"><a href="./contact.html">Contact</a></li>
+        <nav class="nav" class="header">
+            <ul class="nav__list">
+                <li class="nav__item"><a href="./index.html">Home</a></li>
+                <li class="nav__item"><a href="./about.html">About</a></li>
+                <li class="nav__item"><a href="./services.html">Services</a></li>
+                <li class="nav__item"><a href="./contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
     <div class="about-container">
         <h1>About Us</h1>
         <p>Welcome to our about page!</p>
-        <button id="modal-popup">Open Modal</button>
+
+        <!-- modal pop-up -->
+        <button type="button" class="open-modal">Open Modal</button>
         <div class="backdrop is-hidden">
             <div class="modal">
-                <button id="close-btn">&times;</button>
-                <h2>Modal Title</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem architecto facilis nulla debitis, sed
-                    ratione deleniti reiciendis itaque est ex placeat! Dolore assumenda repudiandae deleniti molestias
-                    unde,
-                    velit saepe minus!</p>
+                <button type="button" class="close-btn">x</button>
+                <form class="modal__form">
+                    <label class="modal__label" for="email">Email:
+                        <input class="modal__input" name="email" type="email" placeholder="type email..." required
+                            autofocus>
+                    </label>Phone:
+                    <label class="modal__label" for="phone">
+                        <input class="modal__input" name="phone" type="phone" placeholder="type phone..." required>
+                    </label>
+
+                    <button type="submit" class="send-btn">Send</button>
+                </form>
             </div>
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 My Website. All rights reserved.</p>
+        <p>&copy; 2026 My Website. All rights reserved.</p>
     </footer>
-    <script src="./script.js"></script>
+    <script src=" ./script.js"></script>
 </body>
 
 </html>

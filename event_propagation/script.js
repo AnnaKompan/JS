@@ -1,6 +1,7 @@
 const colorPalette = document.querySelector(".color-palette");
 const output = document.querySelector(".output");
-const scrollOutput = document.querySelector(".scroll-output");
+const throttleScrollOutput = document.querySelector(".throttle-scroll-output");
+const vanillaScrollOutput = document.querySelector(".vanilla-scroll-output");
 
 colorPalette.addEventListener("click", selectColor);
 
@@ -42,8 +43,21 @@ function getRandomHexColor() {
 }
 
 // scroll counter logic
-let scrollEventCounter = 0;
+
+let eventCounter = {
+  throttle: 0,
+  vanilla: 0,
+};
+
+document.addEventListener(
+  "scroll",
+  _.throttle(() => {
+    eventCounter.throttle += 1;
+    throttleScrollOutput.textContent = eventCounter.throttle;
+  }, 300),
+);
+
 document.addEventListener("scroll", () => {
-  scrollEventCounter += 1;
-  scrollOutput.textContent = scrollEventCounter;
+  eventCounter.vanilla += 1;
+  vanillaScrollOutput.textContent = eventCounter.vanilla;
 });

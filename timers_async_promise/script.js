@@ -1,5 +1,7 @@
 const startBtn = document.getElementById("start-btn");
 const stopBtn = document.getElementById("stop-btn");
+const fetchBtn = document.getElementById("fetch-btn");
+const usersList = document.querySelector(".users-list");
 let timerId = null;
 
 // function onClick() {
@@ -104,3 +106,36 @@ makeGreeting("Jeffrey")
 makeGreeting("")
   .then((greeting) => console.log(greeting))
   .catch((err) => console.log(err));
+
+// function fetchUsers() {
+//   return fetch("https://jsonplaceholder.typicode.com/users?_limit=3").then(
+//     (response) => response.json(),
+//   );
+// }
+
+async function fetchUsers() {
+  const response = await fetch(
+    "https://jsonplaceholder.typicode.com/users?_limit=5",
+  );
+  const data = await response.json();
+  return data;
+}
+
+function renderUsers(users) {
+  const markup = users
+    .map((user) => {
+      return `<li>
+      <p><b>Name: </b>${user.name}</p>
+      <p><b>Email: </b>${user.email}</p>
+      <p><b>Company: </b>${user.company.name}</p>
+      </li>`;
+    })
+    .join("");
+  usersList.insertAdjacentHTML("beforeend", markup);
+}
+
+fetchBtn.addEventListener("click", () => {
+  fetchUsers()
+    .then((users) => renderUsers(users))
+    .catch((err) => console.log(err));
+});

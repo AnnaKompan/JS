@@ -3,8 +3,12 @@ body {
   padding: 0;
   margin: 0;
 }
+li {
+  list-style: none;
+}
 .container {
-  height: 100vh;
+  gap: 10px;
+  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,9 +28,18 @@ button:hover {
   transition: background-color 1s ease;
 }
 .container button:last-child {
-  margin-top: 10px;
   background-color: rgb(178, 56, 56);
 }
 .container button:last-child:hover {
   background-color: maroon;
+}
+
+.users-list {
+  margin: 0;
+  list-style: none;
+  padding: 24px;
+}
+
+.users-list li {
+  margin-bottom: 30px;
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asynchronous JS</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <a href="./index.html" class="switch_main">Main</a>
+    <div class="container">
+        <button type="button" id="fetch-posts">Fetch Posts</button>
+        <ul class="posts-list"></ul>
+    </div>
+    <div class="pagination">
+        <button type="button" class="prev-btn is-hidden">Previous</button>
+        <button type="button" class="load-btn">Load More</button>
+        <button type="button" class="next-btn">Next</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script_posts.js"></script>
+</body>
+
+</html>

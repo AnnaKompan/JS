@@ -6,6 +6,9 @@ body {
 li {
   list-style: none;
 }
+a {
+  text-decoration: none;
+}
 .container {
   gap: 10px;
   /* height: 100vh; */
@@ -14,7 +17,9 @@ li {
   justify-content: center;
   align-items: center;
 }
-button {
+button,
+.switch_posts,
+.switch_main {
   font-size: 24px;
   background-color: forestgreen;
   color: #fff;
@@ -34,12 +39,25 @@ button:hover {
   background-color: maroon;
 }
 
-.users-list {
+.users-list,
+.posts-list {
   margin: 0;
   list-style: none;
   padding: 24px;
 }
 
-.users-list li {
+.users-list li,
+.posts-list li {
   margin-bottom: 30px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }

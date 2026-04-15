@@ -75,7 +75,7 @@ prevBtn.addEventListener("click", async () => {
 });
 
 // Load More
-const loadMoreBtn = document.querySelector(".load-btn");
+// const loadMoreBtn = document.querySelector(".load-btn");
 let limit = 5;
 
 async function renderMorePosts(posts) {
@@ -107,12 +107,20 @@ async function fetchMorePosts(limit) {
   }
 }
 
-loadMoreBtn.addEventListener("click", async () => {
-  try {
+// loadMoreBtn.addEventListener("click", async () => {
+//   try {
+//     limit += 5;
+//     const posts = await fetchMorePosts(limit);
+//     renderMorePosts(posts);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
+
+window.addEventListener("scroll", async () => {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
     limit += 5;
     const posts = await fetchMorePosts(limit);
     renderMorePosts(posts);
-  } catch (err) {
-    console.log(err);
   }
 });

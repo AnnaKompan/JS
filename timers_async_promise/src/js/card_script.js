@@ -1,4 +1,3 @@
-// https://jsonplaceholder.typicode.com/photos
 const cardList = document.querySelector(".cards_list");
 const fetchBtn = document.getElementById("fetch-cards");
 const prevBtn = document.querySelector(".prev-btn");

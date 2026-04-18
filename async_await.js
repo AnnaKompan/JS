@@ -79,4 +79,16 @@ async function doChores() {
   }
 }
 
-doChores();
+// doChores();
+
+async function fetchUsers() {
+  const baseUrl = "https://jsonplaceholder.typicode.com";
+  const usersId = [1, 2, 3];
+  const users = usersId.map(async (id) => {
+    const response = await fetch(`${baseUrl}/users/${id}`);
+    return response.json();
+  });
+  const promise = await Promise.all(users);
+  console.log(promise);
+}
+fetchUsers();

@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
@@ -9,45 +9,45 @@ body {
 }
 button {
   cursor: pointer;
-}
-:root {
+} */
+/* :root {
   --btn-color: #babaab;
   --active-btn-color: #ac8656;
   --del-btn: #cd7070;
-}
-.container {
+} */
+/* .container {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.form {
+} */
+/* .form {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 400px;
 }
-.form-txt {
+.form__txt {
   margin-top: 10px;
   width: 100%;
   padding: 5px 10px;
   font-size: 14px;
-}
-.form-btn {
+} */
+/* .form__btn {
   width: 100%;
   padding: 5px 10px;
   border: none;
   background-color: var(--btn-color);
   border-radius: 4px;
-}
-
-.form-btn:hover {
+} */
+/* 
+.form__btn:hover {
   background-color: var(--active-btn-color);
   transition: background-color 1s ease;
 }
 
-.form button:last-child {
+.form__btn--delete {
   color: #fff;
   background-color: var(--del-btn);
-}
+} */

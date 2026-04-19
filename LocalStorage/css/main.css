@@ -1,0 +1,64 @@
+* {
+  box-sizing: border-box;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form__btn {
+  width: 100%;
+  padding: 5px 10px;
+  border: none;
+  background-color: #babaab;
+  border-radius: 4px;
+}
+.form__btn:hover {
+  background-color: #ac8656;
+  transition: background-color 1s ease;
+}
+
+.form__btn--delete {
+  width: 100%;
+  padding: 5px 10px;
+  border: none;
+  background-color: #cd7070;
+  border-radius: 4px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 400px;
+}
+.form__text {
+  margin-top: 10px;
+  width: 100%;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+/*# sourceMappingURL=main.css.map */

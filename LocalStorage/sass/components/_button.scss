@@ -1,0 +1,13 @@
+@use "../utils/vars" as v;
+@use "../utils/mixins" as m;
+
+.form__btn {
+  @include m.btn-base(v.$btn-color);
+  &:hover {
+    background-color: v.$active-btn-color;
+    transition: background-color 1s ease;
+  }
+}
+.form__btn--delete {
+  @include m.btn-base(v.$del-btn);
+}
